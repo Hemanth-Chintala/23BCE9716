@@ -1,0 +1,31 @@
+import java.util.*;
+public class happy {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter any number");
+        int n=sc.nextInt();
+        int sum=0;
+        while(n>=0){
+            int ne=n;
+            while(ne>0){
+                int re=ne%10;
+                sum+=(re*re);
+                ne=ne/10;
+            }
+            if(sum<=10 && sum==1){
+                System.out.println(true);
+                break;
+            }else if(sum<=10 && (sum!=7 || sum!=1)){
+                System.out.println(false);
+                break;
+            }
+            n=sum;
+            sum=0;
+        }
+       
+        sc.close();
+    }
+}
+
+
