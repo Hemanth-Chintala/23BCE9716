@@ -1,0 +1,59 @@
+class Q4:
+    def _init_(self):
+        pass
+    def reflect_matrix(self,board):
+        m = len(board)
+        n = len(board[0])
+        result = []
+        for i in range(m):
+            a = list('0' * n)
+            result.append(a)
+        for i in range(m):
+            for j in range(n):
+                ele = board[i][j]
+                sum = 0
+                if i == 0:
+                    if j == 0:
+                        sum = board[i+1][j] + board[i+1][j+1] + board[i][j+1]
+                    elif j == n - 1:
+                        sum = board[i][j-1] + board[i+1][j-1] + board[i+1][j]
+                    else:
+                        sum = board[i+1][j] + board[i+1][j+1] + board[i][j+1] + board[i][j-1] + board[i+1][j-1]
+                elif i == m - 1:
+                    if j == 0:
+                        sum = board[i-1][j] + board[i-1][j+1] + board[i][j+1]
+                    elif j == n - 1:
+                        sum = board[i][j-1] + board[i-1][j-1] + board[i-1][j]
+                    else:
+                        sum = board[i-1][j] + board[i-1][j+1] + board[i][j+1] + board[i][j-1] + board[i-1][j-1]
+                elif j == 0:
+                    if i == 0:
+                        sum = board[i+1][j] + board[i+1][j+1] + board[i][j+1]
+                    elif i == m - 1:
+                        sum = board[i][j+1] + board[i-1][j+1] + board[i-1][j+1]
+                    else:
+                        sum = board[i+1][j] + board[i+1][j+1] + board[i][j+1] + board[i-1][j] + board[i-1][j+1]
+                elif j == n - 1:
+                    if i == 0:
+                        sum = board[i][j-1] + board[i+1][j-1] + board[i+1][j]
+                    elif i == m - 1:
+                        sum = board[i][j-1] + board[i-1][j-1] + board[i-1][j]
+                    else:
+                        sum = board[i-1][j] + board[i-1][j-1] + board[i][j-1] + board[i+1][j-1] + board[i+1][j]
+                else:
+                    sum = board[i-1][j-1] + board[i-1][j] + board[i-1][j+1] + board[i][j-1] + board[i][j+1] + board[i+1][j-1] + board[i+1][j] + board[i+1][j+1]
+                
+                if ele == 0:
+                    if sum == 3:
+                        result[i][j] = 1
+                elif ele == 1:
+                    if sum == 2 or sum == 3:
+                        result[i][j] = 1
+                else:
+                    print('Invalid Number')
+        board = result.copy()
+        print(board)
+
+board = [[1,1],[1,0]]
+r = Q4()
+r.reflect_matrix(board)
